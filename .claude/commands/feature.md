@@ -16,14 +16,19 @@ Tạo folder feature mới và dẫn dắt qua quy trình từ Discovery → Def
 
 ### Bước 0: Kiểm tra và Tạo Cấu trúc
 
-1. **Kiểm tra folder `features/`** ở root project
-   - Nếu chưa có → Tạo mới
-   - Nếu có rồi → Tiếp tục
+**QUAN TRỌNG: Phải thực sự tạo folder bằng Bash tool, không chỉ mô tả!**
 
-2. **Tạo folder feature** với tên slug (lowercase, dấu gạch ngang)
-   - Input: "Đăng nhập Google" → `features/dang-nhap-google/`
-   - Tạo các subfolder: `1-discovery/`, `2-definition/`, `3-design/`
-   - Tạo folder `1-discovery/_references/` cho screenshots, links
+1. **Chuyển tên feature thành slug** (lowercase, dấu gạch ngang, không dấu)
+   - "Đăng nhập Google" → `dang-nhap-google`
+   - "Thanh toán MoMo" → `thanh-toan-momo`
+
+2. **Tạo cấu trúc folder bằng Bash:**
+
+```bash
+mkdir -p features/[ten-feature]/1-discovery/_references
+mkdir -p features/[ten-feature]/2-definition
+mkdir -p features/[ten-feature]/3-design
+```
 
 3. **Thông báo cho người dùng:**
 
@@ -77,7 +82,7 @@ Cho tôi biết:
 - "Tần suất user gặp vấn đề này như thế nào?"
 - "Nếu không có feature này, user đang workaround bằng cách nào?"
 
-**Sau khi đủ thông tin** → Tổng hợp và lưu `1-discovery/brainstorm.md`
+**Sau khi đủ thông tin** → Dùng **Write tool** để tạo file `1-discovery/brainstorm.md` theo template `.claude/templates/features/1-discovery/brainstorm.md`
 
 #### 1.2 Research (research.md)
 
@@ -97,7 +102,7 @@ Cho tôi biết:
 - "Có app nào bạn thấy làm tốt feature này không?"
 - "Bạn có screenshots hay links tham khảo không?" (lưu vào `_references/`)
 
-**Sau khi đủ** → Lưu `1-discovery/research.md`
+**Sau khi đủ** → Dùng **Write tool** để tạo file `1-discovery/research.md` theo template `.claude/templates/features/1-discovery/research.md`
 
 ```
 ✅ Phase 1 hoàn tất!
@@ -132,7 +137,7 @@ Dựa trên brainstorm, tôi sẽ viết overview cho feature này...
 - **Non-goals**: Những gì KHÔNG làm
 - **Success criteria**: Thế nào là thành công
 
-→ Lưu `2-definition/overview.md` và cho user review
+→ Dùng **Write tool** tạo `2-definition/overview.md` theo template `.claude/templates/features/2-definition/overview.md`, rồi cho user review
 
 #### 2.2 User Stories (user-story.md)
 
@@ -163,7 +168,7 @@ Tôi sẽ viết các user stories...
 - Edge cases
 - Error cases
 
-→ Lưu `2-definition/user-story.md`
+→ Dùng **Write tool** tạo `2-definition/user-story.md` theo template `.claude/templates/features/2-definition/user-story.md`
 
 #### 2.3 Pre-mortem (pre-mortem.md)
 
@@ -182,7 +187,7 @@ Nguyên nhân có thể là gì?
 | User không hiểu cách dùng | Cao | Cao | Thêm onboarding tooltip |
 | ... | ... | ... | ... |
 
-→ Lưu `2-definition/pre-mortem.md`
+→ Dùng **Write tool** tạo `2-definition/pre-mortem.md` theo template `.claude/templates/features/2-definition/pre-mortem.md`
 
 #### 2.4 Metrics (metrics.md)
 
@@ -199,7 +204,7 @@ Làm sao biết feature này thành công?
 - **Guardrail metrics**: Chỉ số không được giảm
 - **Cách đo**: Event tracking cần thiết
 
-→ Lưu `2-definition/metrics.md`
+→ Dùng **Write tool** tạo `2-definition/metrics.md` theo template `.claude/templates/features/2-definition/metrics.md`
 
 ```
 ✅ Phase 2 hoàn tất!
@@ -242,8 +247,8 @@ Tôi sẽ vẽ flow chi tiết cho feature này...
 - Khi nào hiện Bottom Sheet
 - Khi nào hiện Alert/Error
 
-→ Lưu `3-design/user-flow.md` (text description)
-→ Tạo `3-design/user-flow.html` (visual diagram với Mermaid.js)
+→ Dùng **Write tool** tạo `3-design/user-flow.md` theo template `.claude/templates/features/3-design/user-flow.md`
+→ Dùng **Write tool** tạo `3-design/user-flow.html` theo template `.claude/templates/features/3-design/user-flow.html` (visual diagram với Mermaid.js)
 
 #### 3.2 Wireframe (wireframe.html)
 
@@ -260,7 +265,7 @@ Tôi sẽ tạo wireframe lo-fi...
 - Ghi chú cho từng element
 - Interactive states cơ bản
 
-→ Lưu `3-design/wireframe.html`
+→ Dùng **Write tool** tạo `3-design/wireframe.html` theo template `.claude/templates/features/3-design/wireframe.html`
 
 #### 3.3 Mockup (mockup.html)
 
@@ -284,7 +289,7 @@ Tôi sẽ tạo mockup hi-fi theo design system...
 - Hover/Active states
 - Realistic content
 
-→ Lưu `3-design/mockup.html`
+→ Dùng **Write tool** tạo `3-design/mockup.html` theo template `.claude/templates/features/3-design/mockup.html`
 
 ```
 ✅ Phase 3 hoàn tất!
@@ -302,7 +307,9 @@ Tạo files tổng hợp...
 
 #### 4.1 Brief (brief.md)
 
-Tạo tóm tắt 1 trang cho stakeholder:
+Dùng **Write tool** tạo `brief.md` ở root của feature folder theo template `.claude/templates/features/brief.md`:
+
+Tóm tắt 1 trang cho stakeholder:
 
 ```markdown
 # [Feature Name] - Brief
@@ -330,7 +337,9 @@ Tạo tóm tắt 1 trang cho stakeholder:
 
 #### 4.2 Handoff (HANDOFF.md)
 
-Tạo file tổng hợp cho Dev/AI coding:
+Dùng **Write tool** tạo `HANDOFF.md` ở root của feature folder theo template `.claude/templates/features/HANDOFF.md`:
+
+File tổng hợp cho Dev/AI coding:
 
 ```markdown
 # Feature: [Tên]
@@ -360,6 +369,8 @@ Tạo file tổng hợp cho Dev/AI coding:
 ```
 
 #### 4.3 Changelog (changelog.md)
+
+Dùng **Write tool** tạo `changelog.md` ở root của feature folder theo template `.claude/templates/features/changelog.md`:
 
 Khởi tạo changelog:
 

@@ -277,6 +277,9 @@ project/
     ├── skills/                  # Kiến thức chuyên môn
     └── templates/               # Mẫu tài liệu
         └── features/            # Templates cho /feature
+            ├── 1-discovery/
+            ├── 2-definition/
+            └── 3-design/
 ```
 
 ---

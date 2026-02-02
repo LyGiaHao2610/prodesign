@@ -141,10 +141,22 @@ your-project/
 ├── features/                    # Output của /feature
 │   └── ten-feature/
 │       ├── 1-discovery/
+│       │   ├── brainstorm.md
+│       │   ├── research.md
+│       │   └── _references/
 │       ├── 2-definition/
+│       │   ├── overview.md
+│       │   ├── user-story.md
+│       │   ├── pre-mortem.md
+│       │   └── metrics.md
 │       ├── 3-design/
+│       │   ├── user-flow.md
+│       │   ├── user-flow.html
+│       │   ├── wireframe.html
+│       │   └── mockup.html
 │       ├── brief.md             # Share stakeholder
-│       └── HANDOFF.md           # Gửi Dev team
+│       ├── HANDOFF.md           # Gửi Dev team
+│       └── changelog.md
 │
 └── .claude/
     ├── docs/                    # Context sản phẩm (AI tự điền)
@@ -153,6 +165,10 @@ your-project/
     │   └── cong-nghe.md
     ├── commands/                # Các lệnh tắt
     ├── templates/               # Mẫu tài liệu
+    │   └── features/            # Templates cho /feature
+    │       ├── 1-discovery/
+    │       ├── 2-definition/
+    │       └── 3-design/
     └── skills/                  # Kiến thức chuyên môn
 ```
 
