@@ -460,9 +460,9 @@ Bạn có muốn tạo issue trên Linear không?
 ```
 
 **Lưu ý:**
-- Copy nguyên văn HANDOFF.md vào description
-- HANDOFF.md đã chứa: Summary, User Stories, User Flow, UI States, Edge Cases, Out of Scope
-- Không cần link file local vì toàn bộ nội dung đã có trong issue
+- Copy HANDOFF.md vào description, **BỎ mục 9 (References) và mục 10 (Questions)**
+- Lý do: mục 9 chứa links file local (không mở được trên Linear), mục 10 không cần thiết
+- Chỉ copy mục 1-8: Summary, User Stories, User Flow, UI States, Edge Cases, Out of Scope, Data Requirements, Analytics Events
 
 3. **Cập nhật HANDOFF.md** với Linear issue link:
    - Thêm link vào phần References
