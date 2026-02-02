@@ -413,11 +413,92 @@ features/[tên-feature]/
 └── changelog.md           ✓
 
 ══════════════════════════════════════════
+```
+
+#### 4.4 Tạo Linear Issue (Tự động)
+
+**Hỏi người dùng:**
+```
+📋 LINEAR INTEGRATION
+─────────────────────
+
+Bạn có muốn tạo issue trên Linear không?
+```
+
+**Nếu người dùng đồng ý:**
+
+1. **Hỏi thông tin cần thiết:**
+   - Team name/ID (nếu chưa biết)
+   - Project name (nếu có)
+   - Labels (suggest: `phase:handoff`, `type:feature`)
+
+2. **Dùng MCP Linear tool `mcp__linear-tevi__create_issue`** để tạo issue:
+
+```
+Title: [Feature Name]
+
+Description: (Markdown format)
+## Summary
+[Lấy từ brief.md - phần TL;DR]
+
+## Problem
+[Lấy từ overview.md - phần Why]
+
+## Solution
+[Lấy từ overview.md - phần What]
+
+## Success Metrics
+[Lấy từ metrics.md - Primary metrics]
+
+## Documents
+- 📋 HANDOFF: `features/[tên-feature]/HANDOFF.md`
+- 🎨 Mockup: `features/[tên-feature]/3-design/mockup.html`
+- 📝 Brief: `features/[tên-feature]/brief.md`
+
+## User Stories
+[Lấy từ user-story.md - list các stories]
+
+## Checklist
+- [ ] Design review completed
+- [ ] Stakeholder approved
+- [ ] Dev kickoff scheduled
+- [ ] Implementation started
+- [ ] QA completed
+- [ ] Released
+```
+
+3. **Cập nhật HANDOFF.md** với Linear issue link:
+   - Thêm link vào phần References
+
+4. **Thông báo:**
+```
+✅ Đã tạo Linear issue: [TEAM-123] [Feature Name]
+   Link: https://linear.app/[team]/issue/[id]
+
+   Issue đã bao gồm:
+   • Summary từ brief
+   • User stories
+   • Links đến tất cả documents
+   • Checklist cho dev workflow
+```
+
+**Nếu người dùng từ chối:**
+```
+OK! Bạn có thể tạo Linear issue sau bằng cách copy nội dung từ brief.md
+```
+
+---
+
+### THÔNG BÁO CUỐI CÙNG
+
+```
+══════════════════════════════════════════
 
 📌 Next steps:
 1. Review mockup.html và feedback
 2. Share brief.md cho stakeholder approve
 3. Gửi HANDOFF.md cho Dev team
+[4. Check Linear issue: [link] (nếu đã tạo)]
 
 Cần chỉnh sửa gì không?
 ```
