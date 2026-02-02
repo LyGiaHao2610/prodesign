@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Flow: Đăng Nhập Google</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div class="max-w-6xl mx-auto p-8">
+        <header class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-900">User Flow: Đăng Nhập Google</h1>
+            <p class="text-gray-600 mt-2">Version 1.0 | Example Feature</p>
+        </header>
+
+        <div class="bg-white rounded-lg shadow p-4 mb-8">
+            <h2 class="font-semibold text-gray-700 mb-3">Chú thích</h2>
+            <div class="flex flex-wrap gap-4 text-sm">
+                <div class="flex items-center gap-2">
+                    <div class="w-4 h-4 rounded bg-blue-500"></div>
+                    <span>User Action</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <div class="w-4 h-4 rounded bg-green-500"></div>
+                    <span>Success</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <div class="w-4 h-4 rounded bg-red-500"></div>
+                    <span>Error</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <div class="w-4 h-4 rounded bg-yellow-500"></div>
+                    <span>Decision</span>
+                </div>
+            </div>
+        </div>
+
+        <section class="bg-white rounded-lg shadow p-6 mb-8">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Main Flow (Happy Path)</h2>
+            <div class="mermaid">
+flowchart TD
+    A[🚀 Màn hình Login] --> B[Tap 'Tiếp tục với Google']
+    B --> C[Google Popup mở]
+    C --> D[User chọn account]
+    D --> E{Email có trong<br/>hệ thống?}
+    E -->|Email mới| F[Tạo account mới]
+    E -->|Đã có & linked| G[Đăng nhập]
+    E -->|Đã có & chưa link| H[Dialog: Link account?]
+    H -->|Đồng ý| I[Link Google]
+    H -->|Hủy| A
+    I --> G
+    F --> J[✅ Redirect Home]
+    G --> J
+
+    style A fill:#3B82F6,color:#fff
+    style J fill:#10B981,color:#fff
+    style E fill:#F59E0B,color:#fff
+    style H fill:#F59E0B,color:#fff
+            </div>
+        </section>
+
+        <section class="bg-white rounded-lg shadow p-6 mb-8">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Error Flows</h2>
+            <div class="mermaid">
+flowchart TD
+    A[Tap Google Login] --> B{Có mạng?}
+    B -->|Không| C[❌ Toast: Kiểm tra mạng]
+    C --> D[Retry]
+    D --> A
+    B -->|Có| E[Mở Popup]
+    E --> F{Google OK?}
+    F -->|Timeout| G[❌ Toast: Không kết nối được]
+    G --> H[Retry hoặc dùng Email]
+    F -->|OK| I[Chọn Account]
+    I --> J{User cancel?}
+    J -->|Yes| K[Quay lại Login]
+    J -->|No| L[✅ Tiếp tục flow]
+
+    style C fill:#EF4444,color:#fff
+    style G fill:#EF4444,color:#fff
+    style L fill:#10B981,color:#fff
+            </div>
+        </section>
+
+        <section class="bg-white rounded-lg shadow p-6 mb-8">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">UI States</h2>
+            <div class="mermaid">
+stateDiagram-v2
+    [*] --> Idle
+    Idle --> Loading: Tap Google
+    Loading --> PopupOpen: Popup mở
+    PopupOpen --> Processing: Chọn account
+    Processing --> Success: Login OK
+    Processing --> Error: Có lỗi
+    Success --> [*]: Redirect Home
+    Error --> Idle: Dismiss toast
+    PopupOpen --> Idle: User cancel
+            </div>
+        </section>
+
+        <section class="bg-white rounded-lg shadow p-6">
+            <h2 class="text-xl font-semibold text-gray-800 mb-4">Chi tiết từng bước</h2>
+            <div class="space-y-4">
+                <div class="border-l-4 border-blue-500 pl-4 py-2">
+                    <h3 class="font-semibold text-gray-800">Step 1: Màn hình Login</h3>
+                    <p class="text-gray-600 text-sm mt-1">User thấy nút "Tiếp tục với Google" nổi bật ở trên form email</p>
+                    <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded mt-2 inline-block">Entry Point</span>
+                </div>
+                <div class="border-l-4 border-blue-500 pl-4 py-2">
+                    <h3 class="font-semibold text-gray-800">Step 2: Tap nút Google</h3>
+                    <p class="text-gray-600 text-sm mt-1">Button disabled + spinner, mở Google popup</p>
+                    <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded mt-2 inline-block">Loading State</span>
+                </div>
+                <div class="border-l-4 border-yellow-500 pl-4 py-2">
+                    <h3 class="font-semibold text-gray-800">Step 3: Kiểm tra email</h3>
+                    <p class="text-gray-600 text-sm mt-1">Hệ thống check email có trong DB không</p>
+                    <div class="flex gap-2 mt-2">
+                        <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded">Mới → Tạo account</span>
+                        <span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded">Đã có → Login</span>
+                        <span class="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded">Chưa link → Dialog</span>
+                    </div>
+                </div>
+                <div class="border-l-4 border-green-500 pl-4 py-2">
+                    <h3 class="font-semibold text-gray-800">Step 4: Success</h3>
+                    <p class="text-gray-600 text-sm mt-1">Redirect về Home, user đã login</p>
+                    <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded mt-2 inline-block">End State</span>
+                </div>
+            </div>
+        </section>
+
+        <footer class="mt-8 text-center text-gray-500 text-sm">
+            <p>Example Feature | Generated by /feature command</p>
+        </footer>
+    </div>
+
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            flowchart: { useMaxWidth: true, htmlLabels: true, curve: 'basis' }
+        });
+    </script>
+</body>
+</html>

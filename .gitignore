@@ -1,0 +1,30 @@
+# Phụ thuộc
+node_modules/
+
+# Build
+dist/
+build/
+
+# Môi trường
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+
+# Hệ điều hành
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Kiểm thử
+coverage/
+
+# Tạm thời
+*.tmp
+*.temp

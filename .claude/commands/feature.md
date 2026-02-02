@@ -1,0 +1,454 @@
+---
+mo-ta: Tạo feature mới với đầy đủ tài liệu theo quy trình chuẩn
+---
+
+# Lệnh /feature
+
+Tạo folder feature mới và dẫn dắt qua quy trình từ Discovery → Definition → Design → Handoff.
+
+## Cách dùng
+
+```
+/feature [tên feature]
+```
+
+## Quy trình
+
+### Bước 0: Kiểm tra và Tạo Cấu trúc
+
+1. **Kiểm tra folder `features/`** ở root project
+   - Nếu chưa có → Tạo mới
+   - Nếu có rồi → Tiếp tục
+
+2. **Tạo folder feature** với tên slug (lowercase, dấu gạch ngang)
+   - Input: "Đăng nhập Google" → `features/dang-nhap-google/`
+   - Tạo các subfolder: `1-discovery/`, `2-definition/`, `3-design/`
+   - Tạo folder `1-discovery/_references/` cho screenshots, links
+
+3. **Thông báo cho người dùng:**
+
+```
+✅ Đã tạo cấu trúc:
+
+features/
+└── [tên-feature]/
+    ├── 1-discovery/
+    │   └── _references/
+    ├── 2-definition/
+    └── 3-design/
+
+Bắt đầu quy trình phát triển feature...
+```
+
+---
+
+### PHASE 1: DISCOVERY 🔍
+
+#### 1.1 Brainstorm (brainstorm.md)
+
+Bắt đầu cuộc trò chuyện để hiểu feature:
+
+```
+══════════════════════════════════════════
+📍 PHASE 1: DISCOVERY
+══════════════════════════════════════════
+
+🧠 BRAINSTORM
+─────────────
+
+Hãy cùng brainstorm về feature "[Tên feature]".
+Cho tôi biết:
+
+1. 💡 Ý tưởng này đến từ đâu?
+   (Feedback user, data, đối thủ, hay tự nghĩ ra?)
+
+2. 😤 Vấn đề/Pain point cụ thể là gì?
+   (User đang gặp khó khăn gì?)
+
+3. 🎯 Kỳ vọng sau khi có feature này?
+   (User sẽ làm được gì, cảm thấy thế nào?)
+
+4. 🚫 Có gì KHÔNG nên làm trong feature này?
+   (Giới hạn scope)
+```
+
+**Tiếp tục hỏi đào sâu** (2-3 câu nữa tùy context):
+- "Có user cụ thể nào phản hồi về vấn đề này không?"
+- "Tần suất user gặp vấn đề này như thế nào?"
+- "Nếu không có feature này, user đang workaround bằng cách nào?"
+
+**Sau khi đủ thông tin** → Tổng hợp và lưu `1-discovery/brainstorm.md`
+
+#### 1.2 Research (research.md)
+
+```
+🔍 RESEARCH
+───────────
+
+Để tôi nghiên cứu thêm về feature này...
+```
+
+**Nội dung cần cover:**
+- Đối thủ làm feature tương tự như thế nào?
+- Best practices trong ngành
+- Có reference/inspiration nào không?
+
+**Hỏi người dùng:**
+- "Có app nào bạn thấy làm tốt feature này không?"
+- "Bạn có screenshots hay links tham khảo không?" (lưu vào `_references/`)
+
+**Sau khi đủ** → Lưu `1-discovery/research.md`
+
+```
+✅ Phase 1 hoàn tất!
+   • brainstorm.md ✓
+   • research.md ✓
+
+Chuyển sang Phase 2: Definition...
+```
+
+---
+
+### PHASE 2: DEFINITION 📋
+
+#### 2.1 Overview (overview.md)
+
+```
+══════════════════════════════════════════
+📍 PHASE 2: DEFINITION
+══════════════════════════════════════════
+
+📋 OVERVIEW
+───────────
+
+Dựa trên brainstorm, tôi sẽ viết overview cho feature này...
+```
+
+**Tạo overview bao gồm:**
+- **Why**: Tại sao làm feature này
+- **What**: Feature này là gì, làm gì
+- **Who**: Ai sẽ dùng
+- **Goals**: Mục tiêu cụ thể
+- **Non-goals**: Những gì KHÔNG làm
+- **Success criteria**: Thế nào là thành công
+
+→ Lưu `2-definition/overview.md` và cho user review
+
+#### 2.2 User Stories (user-story.md)
+
+```
+📖 USER STORIES
+───────────────
+
+Tôi sẽ viết các user stories...
+```
+
+**Format mỗi story:**
+```markdown
+### Story 1: [Tên story]
+
+**As a** [persona]
+**I want** [action]
+**So that** [benefit]
+
+**Acceptance Criteria:**
+- [ ] Criteria 1
+- [ ] Criteria 2
+- [ ] Criteria 3
+```
+
+**Bao gồm các scenarios:**
+- Happy path (main flow)
+- Alternative paths
+- Edge cases
+- Error cases
+
+→ Lưu `2-definition/user-story.md`
+
+#### 2.3 Pre-mortem (pre-mortem.md)
+
+```
+⚠️ PRE-MORTEM
+─────────────
+
+Hãy tưởng tượng feature này đã launch và THẤT BẠI.
+Nguyên nhân có thể là gì?
+```
+
+**Phân tích các rủi ro:**
+
+| Rủi ro | Khả năng | Ảnh hưởng | Cách phòng tránh |
+|--------|----------|-----------|------------------|
+| User không hiểu cách dùng | Cao | Cao | Thêm onboarding tooltip |
+| ... | ... | ... | ... |
+
+→ Lưu `2-definition/pre-mortem.md`
+
+#### 2.4 Metrics (metrics.md)
+
+```
+📊 METRICS
+──────────
+
+Làm sao biết feature này thành công?
+```
+
+**Định nghĩa:**
+- **Primary metric**: Chỉ số chính (VD: +20% signup)
+- **Secondary metrics**: Chỉ số phụ
+- **Guardrail metrics**: Chỉ số không được giảm
+- **Cách đo**: Event tracking cần thiết
+
+→ Lưu `2-definition/metrics.md`
+
+```
+✅ Phase 2 hoàn tất!
+   • overview.md ✓
+   • user-story.md ✓
+   • pre-mortem.md ✓
+   • metrics.md ✓
+
+Chuyển sang Phase 3: Design...
+```
+
+---
+
+### PHASE 3: DESIGN 🎨
+
+#### 3.1 User Flow (user-flow.md + user-flow.html)
+
+```
+══════════════════════════════════════════
+📍 PHASE 3: DESIGN
+══════════════════════════════════════════
+
+🔀 USER FLOW
+────────────
+
+Tôi sẽ vẽ flow chi tiết cho feature này...
+```
+
+**Nội dung flow:**
+- Entry points (user vào từ đâu)
+- Main flow (happy path)
+- Decision points (điều kiện rẽ nhánh)
+- Edge cases & error states
+- Exit points (user kết thúc ở đâu)
+
+**UI States cần thể hiện:**
+- Khi nào hiện Loading
+- Khi nào hiện Toast/Snackbar
+- Khi nào hiện Dialog/Modal
+- Khi nào hiện Bottom Sheet
+- Khi nào hiện Alert/Error
+
+→ Lưu `3-design/user-flow.md` (text description)
+→ Tạo `3-design/user-flow.html` (visual diagram với Mermaid.js)
+
+#### 3.2 Wireframe (wireframe.html)
+
+```
+✏️ WIREFRAME
+────────────
+
+Tôi sẽ tạo wireframe lo-fi...
+```
+
+**Tạo HTML với:**
+- Layout cơ bản (boxes, placeholders)
+- Responsive (mobile-first)
+- Ghi chú cho từng element
+- Interactive states cơ bản
+
+→ Lưu `3-design/wireframe.html`
+
+#### 3.3 Mockup (mockup.html)
+
+```
+🎨 MOCKUP
+─────────
+
+Tôi sẽ tạo mockup hi-fi theo design system...
+```
+
+**Đọc design system từ** `.claude/docs/he-thong-thiet-ke.md`:
+- Colors
+- Typography
+- Spacing
+- Border radius
+- Shadows
+
+**Tạo HTML với:**
+- Tailwind CSS (hoặc inline styles theo design system)
+- Responsive design
+- Hover/Active states
+- Realistic content
+
+→ Lưu `3-design/mockup.html`
+
+```
+✅ Phase 3 hoàn tất!
+   • user-flow.md ✓
+   • user-flow.html ✓
+   • wireframe.html ✓
+   • mockup.html ✓
+
+Tạo files tổng hợp...
+```
+
+---
+
+### PHASE 4: FINALIZE 📦
+
+#### 4.1 Brief (brief.md)
+
+Tạo tóm tắt 1 trang cho stakeholder:
+
+```markdown
+# [Feature Name] - Brief
+
+## TL;DR
+[1-2 câu mô tả]
+
+## Problem
+[Vấn đề đang giải quyết]
+
+## Solution
+[Giải pháp đề xuất]
+
+## Success Metrics
+[KPIs chính]
+
+## Timeline
+[Rough estimate: S/M/L]
+
+## Links
+- [Overview](2-definition/overview.md)
+- [User Flow](3-design/user-flow.html)
+- [Mockup](3-design/mockup.html)
+```
+
+#### 4.2 Handoff (HANDOFF.md)
+
+Tạo file tổng hợp cho Dev/AI coding:
+
+```markdown
+# Feature: [Tên]
+
+> File này tổng hợp tất cả context để implement.
+
+## 1. Tóm tắt
+[Từ overview.md]
+
+## 2. User Stories
+[Từ user-story.md]
+
+## 3. User Flow
+[Tóm tắt + link đến user-flow.html]
+
+## 4. UI States
+[Từ user-flow.md]
+
+## 5. Edge Cases & Error Handling
+[Từ user-story.md + pre-mortem.md]
+
+## 6. Out of Scope
+[Từ overview.md]
+
+## 7. References
+[Links đến các files]
+```
+
+#### 4.3 Changelog (changelog.md)
+
+Khởi tạo changelog:
+
+```markdown
+# Changelog
+
+## [Ngày tạo] - Initial version
+- Tạo feature documentation
+- Hoàn thành Discovery, Definition, Design phases
+```
+
+---
+
+### HOÀN TẤT
+
+```
+══════════════════════════════════════════
+✅ FEATURE "[Tên]" ĐÃ HOÀN TẤT!
+══════════════════════════════════════════
+
+📁 Cấu trúc đã tạo:
+
+features/[tên-feature]/
+├── 1-discovery/
+│   ├── brainstorm.md      ✓
+│   ├── research.md        ✓
+│   └── _references/
+├── 2-definition/
+│   ├── overview.md        ✓
+│   ├── user-story.md      ✓
+│   ├── pre-mortem.md      ✓
+│   └── metrics.md         ✓
+├── 3-design/
+│   ├── user-flow.md       ✓
+│   ├── user-flow.html     ✓ (mở để xem diagram)
+│   ├── wireframe.html     ✓ (mở để xem lo-fi)
+│   └── mockup.html        ✓ (mở để xem hi-fi)
+├── brief.md               ✓ (share cho stakeholder)
+├── HANDOFF.md             ✓ (cho Dev/AI đọc)
+└── changelog.md           ✓
+
+══════════════════════════════════════════
+
+📌 Next steps:
+1. Review mockup.html và feedback
+2. Share brief.md cho stakeholder approve
+3. Gửi HANDOFF.md cho Dev team
+
+Cần chỉnh sửa gì không?
+```
+
+---
+
+## Lưu ý Quan trọng
+
+1. **Mỗi phase phải có sự tương tác** - Không tự viết hết mà phải hỏi, confirm với user
+
+2. **Đọc context trước** - Luôn đọc `.claude/docs/` để hiểu sản phẩm, persona, design system
+
+3. **Cho user review từng bước** - Sau mỗi file, hỏi "Có gì cần chỉnh không?"
+
+4. **HTML files phải chạy được** - User có thể mở trực tiếp trong browser để preview
+
+5. **Giữ consistency** - Dùng đúng design system, đúng tone of voice của sản phẩm
+
+## Ví dụ
+
+```
+Người dùng: /feature Đăng nhập bằng Apple
+
+Claude: ✅ Đã tạo features/dang-nhap-apple/
+
+        ══════════════════════════════════
+        📍 PHASE 1: DISCOVERY
+        ══════════════════════════════════
+
+        🧠 BRAINSTORM
+
+        Hãy cùng brainstorm về feature "Đăng nhập bằng Apple".
+
+        1. 💡 Ý tưởng này đến từ đâu?
+        2. 😤 User đang gặp khó khăn gì?
+        3. 🎯 Kỳ vọng sau khi có feature này?
+        4. 🚫 Có gì không nên làm?
+
+Người dùng: User iOS than phiền phải nhập email dài...
+
+Claude: [Hỏi thêm 2-3 câu...]
+        [Tổng hợp và lưu brainstorm.md]
+        [Tiếp tục sang Research...]
+        ...
+```

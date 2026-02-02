@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wireframe: {{FEATURE_NAME}}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Wireframe style - grayscale, sketch-like */
+        .wireframe-box {
+            border: 2px dashed #9CA3AF;
+            background: #F3F4F6;
+        }
+        .wireframe-text {
+            background: repeating-linear-gradient(
+                90deg,
+                #D1D5DB,
+                #D1D5DB 40px,
+                transparent 40px,
+                transparent 45px
+            );
+            height: 12px;
+            border-radius: 2px;
+        }
+        .wireframe-button {
+            border: 2px solid #6B7280;
+            background: #E5E7EB;
+        }
+        .wireframe-input {
+            border: 2px solid #9CA3AF;
+            background: white;
+        }
+        .annotation {
+            background: #FEF3C7;
+            border: 1px solid #F59E0B;
+            font-size: 11px;
+        }
+    </style>
+</head>
+<body class="bg-gray-200 min-h-screen p-8">
+    <div class="max-w-6xl mx-auto">
+        <!-- Header -->
+        <header class="mb-8">
+            <h1 class="text-2xl font-bold text-gray-700">Wireframe: {{FEATURE_NAME}}</h1>
+            <p class="text-gray-500 mt-1">Lo-fi prototype | Version {{VERSION}}</p>
+        </header>
+
+        <!-- Device Frames -->
+        <div class="flex flex-wrap gap-8 justify-center">
+
+            <!-- Mobile Frame -->
+            <div class="flex flex-col items-center">
+                <h2 class="text-lg font-semibold text-gray-600 mb-4">Mobile (375px)</h2>
+
+                <!-- Phone Frame -->
+                <div class="bg-gray-800 rounded-[3rem] p-3 shadow-xl">
+                    <div class="bg-white rounded-[2.5rem] w-[375px] h-[812px] overflow-hidden relative">
+
+                        <!-- Status Bar -->
+                        <div class="h-12 bg-gray-100 flex items-center justify-between px-6">
+                            <span class="text-xs text-gray-500">9:41</span>
+                            <div class="flex gap-1">
+                                <div class="w-4 h-2 bg-gray-400 rounded-sm"></div>
+                                <div class="w-4 h-2 bg-gray-400 rounded-sm"></div>
+                                <div class="w-6 h-3 bg-gray-400 rounded-sm"></div>
+                            </div>
+                        </div>
+
+                        <!-- Navigation Bar -->
+                        <div class="h-14 bg-gray-50 border-b flex items-center px-4">
+                            <div class="w-8 h-8 wireframe-box rounded flex items-center justify-center text-gray-400">←</div>
+                            <div class="flex-1 text-center">
+                                <div class="wireframe-text w-24 mx-auto"></div>
+                            </div>
+                            <div class="w-8 h-8 wireframe-box rounded flex items-center justify-center text-gray-400">⋯</div>
+                        </div>
+
+                        <!-- Content Area -->
+                        <div class="p-4 space-y-4">
+
+                            <!-- Annotation -->
+                            <div class="annotation p-2 rounded absolute -right-48 top-32 w-40">
+                                📝 {{ANNOTATION_1}}
+                            </div>
+
+                            <!-- Hero Section -->
+                            <div class="wireframe-box rounded-lg p-4 h-32 flex items-center justify-center">
+                                <span class="text-gray-400">{{PLACEHOLDER_1}}</span>
+                            </div>
+
+                            <!-- Form Fields -->
+                            <div class="space-y-3">
+                                <div>
+                                    <div class="wireframe-text w-20 mb-2"></div>
+                                    <div class="wireframe-input rounded-lg h-12 px-3 flex items-center">
+                                        <span class="text-gray-400 text-sm">{{INPUT_PLACEHOLDER_1}}</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="wireframe-text w-24 mb-2"></div>
+                                    <div class="wireframe-input rounded-lg h-12 px-3 flex items-center">
+                                        <span class="text-gray-400 text-sm">{{INPUT_PLACEHOLDER_2}}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Annotation -->
+                            <div class="annotation p-2 rounded absolute -right-48 top-72 w-40">
+                                📝 {{ANNOTATION_2}}
+                            </div>
+
+                            <!-- Buttons -->
+                            <div class="space-y-3 pt-4">
+                                <button class="wireframe-button w-full h-12 rounded-lg font-medium text-gray-600">
+                                    {{BUTTON_PRIMARY}}
+                                </button>
+                                <button class="w-full h-12 rounded-lg text-gray-500 border-2 border-dashed border-gray-300">
+                                    {{BUTTON_SECONDARY}}
+                                </button>
+                            </div>
+
+                            <!-- Divider -->
+                            <div class="flex items-center gap-3 py-2">
+                                <div class="flex-1 h-px bg-gray-300"></div>
+                                <span class="text-gray-400 text-sm">hoặc</span>
+                                <div class="flex-1 h-px bg-gray-300"></div>
+                            </div>
+
+                            <!-- Social Login -->
+                            <div class="wireframe-box rounded-lg h-12 flex items-center justify-center gap-2">
+                                <div class="w-5 h-5 bg-gray-400 rounded"></div>
+                                <span class="text-gray-500">{{SOCIAL_BUTTON}}</span>
+                            </div>
+
+                        </div>
+
+                        <!-- Bottom Safe Area -->
+                        <div class="absolute bottom-0 left-0 right-0 h-8 bg-gray-50 flex justify-center items-center">
+                            <div class="w-32 h-1 bg-gray-800 rounded-full"></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Desktop Frame -->
+            <div class="flex flex-col items-center">
+                <h2 class="text-lg font-semibold text-gray-600 mb-4">Desktop (1280px)</h2>
+
+                <!-- Browser Frame -->
+                <div class="bg-gray-700 rounded-lg overflow-hidden shadow-xl">
+                    <!-- Browser Bar -->
+                    <div class="h-10 bg-gray-800 flex items-center px-4 gap-2">
+                        <div class="flex gap-1.5">
+                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                        </div>
+                        <div class="flex-1 mx-4">
+                            <div class="bg-gray-600 rounded h-6 flex items-center px-3">
+                                <span class="text-gray-400 text-xs">{{URL_PLACEHOLDER}}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content -->
+                    <div class="bg-white w-[800px] h-[500px] overflow-hidden">
+
+                        <!-- Nav -->
+                        <div class="h-16 border-b flex items-center justify-between px-8">
+                            <div class="wireframe-box w-32 h-8 rounded flex items-center justify-center">
+                                <span class="text-gray-400 text-sm">Logo</span>
+                            </div>
+                            <div class="flex gap-6">
+                                <div class="wireframe-text w-16"></div>
+                                <div class="wireframe-text w-16"></div>
+                                <div class="wireframe-text w-16"></div>
+                            </div>
+                            <div class="wireframe-button px-4 py-2 rounded">
+                                <span class="text-gray-500 text-sm">{{NAV_BUTTON}}</span>
+                            </div>
+                        </div>
+
+                        <!-- Main Content -->
+                        <div class="flex">
+                            <!-- Sidebar (optional) -->
+                            <div class="w-64 border-r p-4 space-y-3">
+                                <div class="wireframe-text w-full"></div>
+                                <div class="wireframe-text w-3/4"></div>
+                                <div class="wireframe-text w-5/6"></div>
+                                <div class="wireframe-text w-2/3"></div>
+                            </div>
+
+                            <!-- Main -->
+                            <div class="flex-1 p-8">
+                                <!-- Title -->
+                                <div class="wireframe-text w-48 h-6 mb-2"></div>
+                                <div class="wireframe-text w-96 mb-6"></div>
+
+                                <!-- Content Grid -->
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="wireframe-box rounded-lg p-4 h-32">
+                                        <span class="text-gray-400">{{CONTENT_BLOCK_1}}</span>
+                                    </div>
+                                    <div class="wireframe-box rounded-lg p-4 h-32">
+                                        <span class="text-gray-400">{{CONTENT_BLOCK_2}}</span>
+                                    </div>
+                                </div>
+
+                                <!-- CTA -->
+                                <div class="mt-6 flex gap-3">
+                                    <button class="wireframe-button px-6 py-3 rounded-lg">
+                                        {{BUTTON_PRIMARY}}
+                                    </button>
+                                    <button class="px-6 py-3 rounded-lg border-2 border-dashed border-gray-300 text-gray-500">
+                                        {{BUTTON_SECONDARY}}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Annotations Legend -->
+        <div class="mt-12 bg-white rounded-lg p-6 shadow">
+            <h2 class="text-lg font-semibold text-gray-700 mb-4">Ghi chú</h2>
+            <div class="grid grid-cols-2 gap-4 text-sm">
+                <div class="flex gap-2">
+                    <span class="font-medium text-gray-600">1.</span>
+                    <span class="text-gray-500">{{NOTE_1}}</span>
+                </div>
+                <div class="flex gap-2">
+                    <span class="font-medium text-gray-600">2.</span>
+                    <span class="text-gray-500">{{NOTE_2}}</span>
+                </div>
+                <div class="flex gap-2">
+                    <span class="font-medium text-gray-600">3.</span>
+                    <span class="text-gray-500">{{NOTE_3}}</span>
+                </div>
+                <div class="flex gap-2">
+                    <span class="font-medium text-gray-600">4.</span>
+                    <span class="text-gray-500">{{NOTE_4}}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="mt-8 text-center text-gray-500 text-sm">
+            <p>Wireframe for {{PRODUCT_NAME}} | {{DATE}}</p>
+        </footer>
+    </div>
+</body>
+</html>
