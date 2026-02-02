@@ -9,7 +9,7 @@
 ### Bước 1: Clone về máy
 
 ```bash
-git clone https://github.com/user/prodesign.git ~/prodesign
+git clone https://github.com/LyGiaHao2610/prodesign.git ~/prodesign
 ```
 
 ### Bước 2: Thêm lệnh tắt
